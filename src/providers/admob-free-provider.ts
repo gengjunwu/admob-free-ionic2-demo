@@ -135,8 +135,10 @@ export class AdmobFreeProvider {
 
   showBanner() {
     if(this.bannerConfig.autoShow) {
-      this.prepareBanner();
-      this.bannerPrepared = false;
+      this.prepareBanner()
+      .then(() => {
+        this.bannerPrepared = false;
+      });
     } else if(this.bannerPrepared) {
       this.admobFree.banner.show()
       .then(() => {
@@ -178,10 +180,10 @@ export class AdmobFreeProvider {
     });
   }
 
-  prepareInterstitial() {
+  prepareInterstitial(): Promise<any> {
     this.interstitialConfig.id = this.admobId.interstitial;
     this.admobFree.interstitial.config(this.interstitialConfig);
-    this.admobFree.interstitial.prepare()
+    return this.admobFree.interstitial.prepare()
     .then(() => {
       this.interstitialPrepared = true;
       console.log('AdMob Interstitial Ad is prepared, will be presented if autoShow is true, otherwise, call showInterstitial().');
@@ -193,8 +195,10 @@ export class AdmobFreeProvider {
 
   showInterstitial() {
     if(this.interstitialConfig.autoShow) {
-      this.prepareInterstitial();
-      this.interstitialPrepared = false;
+      this.prepareInterstitial()
+      .then(() => {
+        this.interstitialPrepared = false;
+      });
     } else if(this.interstitialPrepared) {
       this.admobFree.interstitial.show()
       .then(() => {
