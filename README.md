@@ -91,7 +91,7 @@ $ ionic run ios
 ```
 
 # Contact #
-* [Jacky Wu](https://www.bitmix.nz/)
+* [Gengjun Wu](https://www.bitmix.nz/)
 
 # Reference #
 * [Ionic 2 Framework](https://ionicframework.com/)
